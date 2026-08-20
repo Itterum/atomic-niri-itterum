@@ -1,17 +1,24 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-name: template
-description: This is my personal OS image.
+version: 1
+name: niri-itterum
+description: Personal Fedora Atomic image based on Wayblue Niri.
 
 base-image: ghcr.io/wayblueorg/niri
 image-version: latest
 
 modules:
+  # Copy any system files from files/system/ into the image root.
+  # Useful for config files in /etc/ or /usr/.
   - type: files
     files:
       - source: system
         destination: /
 
+  # RPM packages on top of the Wayblue Niri base.
+  # Wayblue already includes: niri, waybar, alacritty, fuzzel,
+  # swaylock, swayidle, swaybg, SDDM, pipewire, wireplumber,
+  # thunar, dunst, rofi, grim, slurp, blueman, NetworkManager, etc.
   - type: dnf
     repos:
       copr:
@@ -20,21 +27,19 @@ modules:
 
     install:
       packages:
-        - helix
-        - starship
-        - quickshell
-        - dms
-        - foot
-        - greetd
+        - helix        # modal text editor
+        - starship     # cross-shell prompt
+        - quickshell   # scriptable QML shell / bar
+        - dms          # display management util
+        - foot         # fast Wayland terminal
 
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-
+  # Homebrew / Linuxbrew — installed at runtime, updated via systemd.
+  # Disable analytics by default.
   - type: brew
     brew-analytics: false
 
+  # Flatpaks installed on first boot via systemd services.
+  # System scope = available to all users, managed by root.
   - type: default-flatpaks
     configurations:
       - notify: true
@@ -42,6 +47,7 @@ modules:
         install:
           - com.brave.Browser
           - org.gnome.Loupe
-      - scope: user
 
+  # Install cosign signing policy so that rpm-ostree / bootc can
+  # verify this image. Must be the last module.
   - type: signing
