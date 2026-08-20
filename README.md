@@ -1,43 +1,55 @@
-# BlueBuild Template &nbsp; [![bluebuild build badge](https://github.com/blue-build/template/actions/workflows/build.yml/badge.svg)](https://github.com/blue-build/template/actions/workflows/build.yml)
+# niri-itterum
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+Personal Fedora Atomic image based on [Wayblue Niri](https://github.com/wayblueorg/wayblue).
 
-After setup, it is recommended you update this README to describe your custom image.
+Built with [BlueBuild](https://blue-build.org/).
+
+## What
+
+A derived image on top of `ghcr.io/wayblueorg/niri:latest` with personal package and Flatpak preferences:
+
+- **helix** — modal text editor
+- **starship** — cross-shell prompt (via COPR atim/starship)
+- **quickshell** — scriptable shell and bar
+- **dms** — display management (via COPR avengemedia/dms)
+- **foot** — fast, minimal Wayland terminal
+- **Homebrew** — user-space package manager (installed at runtime)
+- **Brave Browser** — via Flathub
+- **GNOME Loupe** — image viewer via Flathub
+
+Wayblue Niri base already includes: niri, waybar, alacritty, fuzzel, swaylock,
+swayidle, swaybg, SDDM, pipewire, wireplumber, thunar, dunst, rofi, grim, slurp,
+blueman, NetworkManager, and more.
 
 ## Installation
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+### Rebase from an existing Fedora Atomic installation
 
-To rebase an existing atomic Fedora installation to the latest build:
+> Two reboots are required: the first installs signing keys and policies.
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/blue-build/template:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/blue-build/template:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
+Step 1 — rebase to the unsigned image to get signing keys:
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+    rpm-ostree rebase ostree-unverified-registry:ghcr.io/itterum/niri-itterum:latest
+    systemctl reboot
 
-## ISO
+Step 2 — rebase to the signed image:
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/how-to/generate-iso/#_top). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+    rpm-ostree rebase ostree-image-signed:docker://ghcr.io/itterum/niri-itterum:latest
+    systemctl reboot
 
-## Verification
+## Build
 
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
+Images are built automatically on GitHub Actions and published to GHCR.
 
-```bash
-cosign verify --key cosign.pub ghcr.io/blue-build/template
-```
+To build locally (requires `bluebuild` CLI):
+
+    bluebuild build recipes/recipe.yml
+
+## Signing
+
+This image is signed with [cosign](https://github.com/sigstore/cosign).
+The public key is available at `cosign.pub` in this repository.
+
+To verify manually:
+
+    cosign verify --key cosign.pub ghcr.io/itterum/niri-itterum:latest
