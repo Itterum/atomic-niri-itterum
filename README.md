@@ -53,3 +53,21 @@ The public key is available at `cosign.pub` in this repository.
 To verify manually:
 
     cosign verify --key cosign.pub ghcr.io/itterum/niri-itterum:latest
+
+## Installation (Rebasing)
+
+Switching your existing Fedora Atomic system to this custom BlueBuild image requires a **two-step rebase** to properly set up signature enforcement:
+
+1. **Step 1: Bootstrap signing policy (Unsigned)**
+   This installs the image and your `cosign.pub` key so `rpm-ostree` learns to trust it.
+   ```bash
+   rpm-ostree rebase ostree-unverified-registry:ghcr.io/Itterum/atomic-niri-itterum:latest
+   systemctl reboot
+   ```
+
+2. **Step 2: Enable signature verification (Signed)**
+   Now that your boot environment has the signing policy, switch to the verified endpoint.
+   ```bash
+   rpm-ostree rebase ostree-image-signed:docker://ghcr.io/Itterum/atomic-niri-itterum:latest
+   systemctl reboot
+   ```
