@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 version: 1
 name: atomic-niri-itterum
-description: Personal Fedora Atomic image based on bazzite-dx-nvidia-gnome.
+description: Bazzite DX GNOME with Niri.
 
 base-image: ghcr.io/ublue-os/bazzite-dx-nvidia-gnome
 image-version: stable
@@ -14,26 +14,9 @@ modules:
         destination: /
 
   - type: dnf
-    # repos:
-    #   copr:
-    #     # - avengemedia/danklinux
-    #     - avengemedia/dms
-
     install:
       packages:
         - niri
         - helix
-        # - starship
-        # - quickshell
-        # - dms
-        # - ghostty
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: system
-        install:
-          - com.brave.Browser
-          - org.gnome.Loupe
 
   - type: signing
