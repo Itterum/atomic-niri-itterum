@@ -1,0 +1,51 @@
+theme = "itterum"
+
+[editor]
+line-number = "relative"
+cursorline = true
+color-modes = true
+bufferline = "multiple"
+auto-format = true
+auto-completion = true
+completion-trigger-len = 1
+end-of-line-diagnostics = "hint"
+rulers = [100]
+
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+auto-signature-help = true
+display-inlay-hints = true
+display-color-swatches = true
+snippets = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "|"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
+[editor.file-picker]
+hidden = false
+git-ignore = true
+
+[keys.normal]
+C-s = ":write"
+C-q = ":quit"
+
+[keys.insert]
+C-s = ["normal_mode", ":write", "insert_mode"]

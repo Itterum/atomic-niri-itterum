@@ -1,0 +1,66 @@
+# JavaScript / TypeScript
+# Use the project-local Prettier configuration and infer the parser from the file name.
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+# Rust
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+check.allTargets = true
+cargo.buildScripts.enable = true
+procMacro.enable = true
+completion.fullFunctionSignatures.enable = true
+imports.granularity.group = "module"
+inlayHints.bindingModeHints.enable = true
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.lifetimeElisionHints.useParameterNames = true
+
+[[language]]
+name = "rust"
+roots = ["Cargo.toml", "Cargo.lock"]
+language-servers = ["rust-analyzer"]
+auto-format = true
+
+# Python: basedpyright provides type analysis; Ruff provides linting, fixes and formatting.
+[language-server.basedpyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "uv.lock", "requirements.txt", ".git"]
+language-servers = [
+  "basedpyright",
+  { name = "ruff", only-features = ["diagnostics", "code-action"] },
+]
+formatter = { command = "ruff", args = ["format", "-"] }
+auto-format = true
