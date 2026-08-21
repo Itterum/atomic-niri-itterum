@@ -23,10 +23,10 @@ modules:
       packages:
         - niri
         - helix
-        - starship
+        # - starship
         # - quickshell
         # - dms
-        - ghostty
+        # - ghostty
 
   - type: default-flatpaks
     configurations:
