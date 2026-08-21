@@ -5,7 +5,7 @@ name: atomic-niri-itterum
 description: Personal Fedora Atomic image based on bazzite-dx-nvidia-gnome.
 
 base-image: ghcr.io/ublue-os/bazzite-dx-nvidia-gnome
-image-version: latest
+image-version: stable
 
 modules:
   - type: files
@@ -27,9 +27,6 @@ modules:
         # - quickshell
         # - dms
         - ghostty
-
-  - type: brew
-    brew-analytics: false
 
   - type: default-flatpaks
     configurations:
