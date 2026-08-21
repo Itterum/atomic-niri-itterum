@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+set -e
+
+SOURCE="/usr/share/atomic-niri-itterum/niri"
+TARGET="${XDG_CONFIG_HOME:-$HOME/.config}/niri"
+
+if [ ! -f "$TARGET/config.kdl" ]; then
+    mkdir -p "$(dirname "$TARGET")"
+    cp -a "$SOURCE" "$TARGET"
+fi
