@@ -10,6 +10,8 @@ image-version: stable
 modules:
   - type: dnf
     repos:
+      files:
+        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
       copr:
         - avengemedia/danklinux
         - avengemedia/dms
