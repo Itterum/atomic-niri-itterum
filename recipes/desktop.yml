@@ -8,39 +8,4 @@ base-image: ghcr.io/ublue-os/bazzite-dx-nvidia-gnome
 image-version: stable
 
 modules:
-  - type: dnf
-    repos:
-      files:
-        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-      copr:
-        - avengemedia/danklinux
-        - avengemedia/dms
-        - scottames/ghostty
-    install:
-      packages:
-        - niri
-        - dms
-        - helix
-        - zed
-        - ghostty
-
-  - type: dnf
-    no-cache: true
-    install:
-      packages:
-        - https://persistent.oaistatic.com/codex-app-prod/linux/rpm/latest/chatgpt.x86_64.rpm
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: system
-        install:
-          - com.brave.Browser
-          - org.telegram.desktop
-          - com.github.tchx84.Flatseal
-
-  - type: files
-    files:
-      - source: system
-        destination: /
-
-  - type: signing
+  - from-file: common.yml
