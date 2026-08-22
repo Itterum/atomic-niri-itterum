@@ -4,8 +4,15 @@ set -e
 
 SOURCE="/usr/share/atomic-niri-itterum/niri"
 TARGET="${XDG_CONFIG_HOME:-$HOME/.config}/niri"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/atomic-niri-itterum"
+MARKER="$STATE_DIR/niri-initialized"
 
-if [ ! -f "$TARGET/config.kdl" ]; then
-    mkdir -p "$(dirname "$TARGET")"
-    cp -a "$SOURCE" "$TARGET"
+if [ ! -f "$MARKER" ]; then
+    mkdir -p "$TARGET" "$STATE_DIR"
+
+    # Копируем только отсутствующие файлы.
+    # Уже существующие пользовательские настройки не трогаем.
+    cp -a -n "$SOURCE/." "$TARGET/"
+
+    touch "$MARKER"
 fi

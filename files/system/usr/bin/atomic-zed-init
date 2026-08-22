@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+set -e
+
+SOURCE="/usr/share/atomic-niri-itterum/zed"
+TARGET="${XDG_CONFIG_HOME:-$HOME/.config}/zed"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/atomic-niri-itterum"
+MARKER="$STATE_DIR/zed-initialized"
+
+if [ ! -f "$MARKER" ]; then
+    mkdir -p "$TARGET" "$STATE_DIR"
+
+    # Копируем defaults, но не перезаписываем уже существующие файлы.
+    cp -a -n "$SOURCE/." "$TARGET/"
+
+    touch "$MARKER"
+fi
