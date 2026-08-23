@@ -7,7 +7,9 @@ modules:
       - |
         COPY --from=ghcr.io/ublue-os/brew:latest /system_files/ /tmp/brew_files/
       - |
-        RUN cp -a /tmp/brew_files/. / && rm -rf /tmp/brew_files
+        RUN cp -a /tmp/brew_files/. / && \
+            rm -rf /tmp/brew_files && \
+            systemctl enable brew-setup.service
 
   - type: dnf
     repos:
