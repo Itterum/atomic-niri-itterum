@@ -2,10 +2,10 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 version: 1
 name: atomic-niri-itterum
-description: Bazzite DX GNOME with Niri for laptop.
+description: Wayblue with Niri for laptop.
 
-base-image: ghcr.io/ublue-os/bazzite-dx-gnome
-image-version: stable
+base-image: ghcr.io/wayblueorg/niri
+image-version: latest
 
 modules:
   - from-file: common.yml

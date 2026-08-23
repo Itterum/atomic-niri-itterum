@@ -12,7 +12,6 @@ modules:
         - scottames/ghostty
     install:
       packages:
-        - niri
         - dms
         - quickshell-git
         - helix
