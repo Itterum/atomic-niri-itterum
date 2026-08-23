@@ -2,10 +2,10 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 version: 1
 name: atomic-niri-itterum-nvidia
-description: Bazzite DX GNOME with Niri for desktop with nvidia.
+description: Wayblue with Niri for desktop with nvidia.
 
-base-image: ghcr.io/ublue-os/bazzite-dx-nvidia-gnome
-image-version: stable
+base-image: ghcr.io/wayblueorg/niri-nvidia-open
+image-version: latest
 
 modules:
   - from-file: common.yml
