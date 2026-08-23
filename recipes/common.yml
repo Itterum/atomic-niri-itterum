@@ -16,6 +16,8 @@ modules:
         - quickshell-git
         - greetd
         - dms-greeter
+        - gnome-keyring
+        - gnome-keyring-pam
         - helix
         - zed
         - ghostty
