@@ -2,6 +2,13 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
 
 modules:
+  - type: containerfile
+    snippets:
+      - |
+        COPY --from=ghcr.io/ublue-os/brew:latest /system_files/ /tmp/brew_files/
+      - |
+        RUN cp -a /tmp/brew_files/. / && rm -rf /tmp/brew_files
+
   - type: dnf
     repos:
       files:
