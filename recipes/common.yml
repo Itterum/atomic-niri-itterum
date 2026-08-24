@@ -34,14 +34,6 @@ modules:
         - ghostty
 
   - type: dnf
-    repos:
-      files:
-        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
-    install:
-      packages:
-        - google-chrome-stable
-
-  - type: dnf
     no-cache: true
     install:
       packages:
