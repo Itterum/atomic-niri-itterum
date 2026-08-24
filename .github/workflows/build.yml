@@ -46,6 +46,6 @@ jobs:
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
 
-          push: ${{ github.ref == 'refs/head/main' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
 
           skip_checkout: true
