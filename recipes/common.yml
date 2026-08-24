@@ -15,12 +15,14 @@ modules:
     repos:
       files:
         - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
       copr:
         - avengemedia/danklinux
         - avengemedia/dms
         - scottames/ghostty
     install:
       packages:
+        - google-chrome-stable
         - dms
         - quickshell-git
         - greetd
@@ -28,6 +30,7 @@ modules:
         - gnome-keyring
         - gnome-keyring-pam
         - helix
+        - zsh
         - zed
         - ghostty
 
