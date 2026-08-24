@@ -8,8 +8,8 @@ modules:
         COPY --from=ghcr.io/ublue-os/brew:latest /system_files/ /tmp/brew_files/
       - |
         RUN cp -a /tmp/brew_files/. / && \
-            rm -rf /tmp/brew_files && \
-            systemctl enable brew-setup.service
+        rm -rf /tmp/brew_files && \
+        systemctl enable brew-setup.service
 
   - type: dnf
     repos:
@@ -39,6 +39,7 @@ modules:
     install:
       packages:
         - https://persistent.oaistatic.com/codex-app-prod/linux/rpm/latest/chatgpt.x86_64.rpm
+
   - type: default-flatpaks
     configurations:
       - notify: true
