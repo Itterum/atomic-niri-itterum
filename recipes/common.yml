@@ -15,14 +15,13 @@ modules:
     repos:
       files:
         - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
-        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
       copr:
         - avengemedia/danklinux
         - avengemedia/dms
         - scottames/ghostty
+
     install:
       packages:
-        - google-chrome-stable
         - dms
         - quickshell-git
         - greetd
@@ -33,6 +32,14 @@ modules:
         - zsh
         - zed
         - ghostty
+
+  - type: dnf
+    repos:
+      files:
+        - https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome.repo
+    install:
+      packages:
+        - google-chrome-stable
 
   - type: dnf
     no-cache: true
