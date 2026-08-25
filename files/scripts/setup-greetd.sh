@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-systemctl disable sddm.service || true
+systemctl disable gdm.service || true
 systemctl enable greetd.service
 systemctl set-default graphical.target
 
