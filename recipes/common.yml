@@ -13,6 +13,7 @@ modules:
 
     install:
       packages:
+        - niri
         - dms
         - quickshell-git
         - greetd
